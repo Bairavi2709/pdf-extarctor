@@ -1,0 +1,138 @@
+
+Bairavi
+23:21 (0 minutes ago)
+to me
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Text Extractor</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #8a2be2, #4b0082); /* Vibrant violet gradient */
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Form Container Styles */
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.2); /* Transparent white background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 60%;
+            max-width: 600px;
+            animation: slideUp 1s ease-in-out;
+        }
+
+        .form-container label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-container input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #fff;
+            background-color: #8a2be2;
+            color: #fff;
+            font-size: 1em;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4b0082;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #6a1b9a;
+        }
+
+        /* Extracted Text Result Styles */
+        .result-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            width: 60%;
+            max-width: 600px;
+            display: none; /* Hidden initially */
+            animation: fadeInText 2s ease-in-out;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 1.1em;
+            color: #eee;
+            line-height: 1.5em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>PDF Text Extractor</h1>
+
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            <label for="pdf_file">Upload PDF:</label>
+            <input type="file" name="pdf_file" id="pdf_file" accept="application/pdf" required>
+            <button type="submit">Extract Text</button>
+        </form>
+    </div>
+
+    {% if extracted_text %}
+        <div class="result-container">
+            <h2>Extracted Text:</h2>
+            <pre>{{ extracted_text }}</pre>
+        </div>
+        <script>
+            // Show the result container with a fade-in effect after the form submission
+            document.querySelector('.result-container').style.display = 'block';
+        </script>
+    {% endif %}
+</body>
+</html>
